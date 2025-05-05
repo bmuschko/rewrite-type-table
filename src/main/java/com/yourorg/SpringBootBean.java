@@ -63,7 +63,7 @@ public class SpringBootBean extends Recipe {
                 }
 
                 if (getCursor().pollMessage(POLL_MESSAGE) == null) {
-                    c = c.withBody(createJavaTemplate()
+                    c = c.withBody(createJavaTemplate(ctx)
                             .apply(new Cursor(getCursor(), c.getBody()),
                                     c.getBody().getCoordinates().lastStatement()));
 
@@ -75,7 +75,7 @@ public class SpringBootBean extends Recipe {
         };
     }
 
-    private JavaTemplate createJavaTemplate() {
+    private JavaTemplate createJavaTemplate(ExecutionContext ctx) {
         //language=java
         return JavaTemplate.builder("@Bean\n" +
                         "public String helloWorld() {\n" +
@@ -84,7 +84,7 @@ public class SpringBootBean extends Recipe {
                 .imports(IMPORTS)
                 .javaParser(JavaParser
                         .fromJavaVersion()
-                        .classpath(CLASSPATH))
+                        .classpathFromResources(ctx, CLASSPATH))
                 .build();
     }
 }

@@ -16,6 +16,10 @@ plugins {
 group = "com.yourorg"
 description = "Rewrite recipes."
 
+recipeDependencies {
+    parserClasspath("org.springframework:spring-context:latest.release")
+}
+
 dependencies {
     // The bom version can also be set to a specific version
     // https://github.com/openrewrite/rewrite-recipe-bom/releases
@@ -33,9 +37,6 @@ dependencies {
 
     // Need to have a slf4j binding to see any output enabled from the parser.
     runtimeOnly("ch.qos.logback:logback-classic:1.2.+")
-
-    testRuntimeOnly("org.springframework:spring-core:latest.release")
-    testRuntimeOnly("org.springframework:spring-context:latest.release")
     testRuntimeOnly("org.springframework.boot:spring-boot-starter-web:latest.release")
 }
 
