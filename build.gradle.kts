@@ -28,27 +28,15 @@ dependencies {
     implementation("org.assertj:assertj-core:latest.release")
     runtimeOnly("org.openrewrite:rewrite-java-17")
 
-    // Refaster style recipes need the rewrite-templating annotation processor and dependency for generated recipes
-    // https://github.com/openrewrite/rewrite-templating/releases
-    annotationProcessor("org.openrewrite:rewrite-templating:latest.release")
-    implementation("org.openrewrite:rewrite-templating")
-    // The `@BeforeTemplate` and `@AfterTemplate` annotations are needed for refaster style recipes
-    compileOnly("com.google.errorprone:error_prone_core:latest.release") {
-        exclude("com.google.auto.service", "auto-service-annotations")
-        exclude("io.github.eisop","dataflow-errorprone")
-    }
-
     // The RewriteTest class needed for testing recipes
     testImplementation("org.openrewrite:rewrite-test")
 
     // Need to have a slf4j binding to see any output enabled from the parser.
     runtimeOnly("ch.qos.logback:logback-classic:1.2.+")
 
-    // Our recipe converts Guava's `Lists` type
-    testRuntimeOnly("com.google.guava:guava:latest.release")
-    testRuntimeOnly("org.apache.commons:commons-lang3:latest.release")
     testRuntimeOnly("org.springframework:spring-core:latest.release")
     testRuntimeOnly("org.springframework:spring-context:latest.release")
+    testRuntimeOnly("org.springframework.boot:spring-boot-starter-web:latest.release")
 }
 
 signing {
