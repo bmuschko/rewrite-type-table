@@ -12,7 +12,7 @@ public class SpringBootBeanTest implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         spec.recipe(new SpringBootBean("com.bmuschko.MyApp"))
           .parser(JavaParser.fromJavaVersion()
-            .classpath("spring-context", "spring-boot"));
+            .classpath("spring-boot", "spring-boot-autoconfigure"));
     }
 
     @Test
